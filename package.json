@@ -2,15 +2,17 @@
   "name": "dll-version-comparitor",
   "version": "1.0.0",
   "description": "",
-  "main": "index.ts",
+  "main": "index.js",
   "scripts": {
-    "run": "tsc index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Charlie Wynn",
   "license": "ISC",
   "devDependencies": {
-    "ts-node": "^10.9.2",
+    "@enviro/metadata": "^1.5.1",
     "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "path": "^0.12.7"
   }
 }
