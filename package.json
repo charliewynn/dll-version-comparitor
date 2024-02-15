@@ -1,0 +1,16 @@
+{
+  "name": "dll-version-comparitor",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "run": "tsc index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Charlie Wynn",
+  "license": "ISC",
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  }
+}
