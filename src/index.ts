@@ -1,22 +1,18 @@
-import { Chicken } from "./chicken";
+import { Folder, Scan } from "./FolderScanner";
 import { AreEqual, GetMetadata, PrintDiff } from "./Metadata";
 
 (async () => {
-  console.log("Starting App");
-
-  const chicken = new Chicken();
-  chicken.cluck();
-
-  try {
-    const mdA = await GetMetadata("./dlls/SourceA/Newtonsoft.JSON.dll");
-    const mdB = await GetMetadata("./dlls/SourceB/Newtonsoft.JSON.dll");
-
-    if (!AreEqual(mdA, mdB)) {
-      PrintDiff(mdA, mdB);
-    }
-
-    let a = 1;
-  } catch (e) {
-    console.error(e);
-  }
+  const sourceA = await Scan("./dlls/SourceA");
+  const sourceB = await Scan("./dlls/SourceB");
+  let a = 1;
+  // ^ good spot to put breakpoint
 })();
+
+const testMD = async () => {
+  const mdA = await GetMetadata("./dlls/SourceA/Newtonsoft.JSON.dll");
+  const mdB = await GetMetadata("./dlls/SourceB/Newtonsoft.JSON.dll");
+
+  if (!AreEqual(mdA, mdB)) {
+    PrintDiff(mdA, mdB);
+  }
+};

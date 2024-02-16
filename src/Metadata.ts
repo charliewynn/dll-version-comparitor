@@ -1,4 +1,4 @@
-interface Metadata {
+export interface Metadata {
   AssemblyVersion: string;
   ProductVersion: string;
   ProductVersionNumber: string;
