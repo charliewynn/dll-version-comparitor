@@ -1,38 +1,22 @@
 import { Chicken } from "./chicken";
+import { AreEqual, GetMetadata, PrintDiff } from "./Metadata";
 
 (async () => {
-  let Metadata = await (eval('import("@enviro/metadata")') as Promise<
-    typeof import("@enviro/metadata/lib/index.js")
-  >);
-  Metadata = Metadata.default;
-
-  console.log("hello");
+  console.log("Starting App");
 
   const chicken = new Chicken();
   chicken.cluck();
 
-  async function read() {
-    try {
-      let exifPath = "C:\\program files\\exif\\exiftool";
-      console.log("Path", exifPath);
-      const metadata = await Metadata.get(
-        "./dlls/SourceA/Newtonsoft.JSON.dll",
-        {
-          // path not required, since ExifTool is accessible from terminal using exiftool.
-          path: exifPath,
-          tags: [
-            {
-              name: "FileName",
-              exclude: true,
-            },
-          ],
-        }
-      );
-      console.log(metadata);
-    } catch (e) {
-      console.error(e);
-    }
-  }
+  try {
+    const mdA = await GetMetadata("./dlls/SourceA/Newtonsoft.JSON.dll");
+    const mdB = await GetMetadata("./dlls/SourceB/Newtonsoft.JSON.dll");
 
-  read();
+    if (!AreEqual(mdA, mdB)) {
+      PrintDiff(mdA, mdB);
+    }
+
+    let a = 1;
+  } catch (e) {
+    console.error(e);
+  }
 })();
